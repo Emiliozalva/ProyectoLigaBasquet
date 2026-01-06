@@ -1,12 +1,18 @@
 import './App.css'
+import { Navbar } from './components/shared/Navbar.jsx'
+import NextMatchCard from './components/shared/NextMatchCard.jsx'
+import MatchesCarousel from './components/shared/MatchesCarousel.jsx'
 
 function App() {
   return (
-    <div className="bg-slate-900 h-screen text-white flex justify-center items-center">
-      <h1 className="text-4xl font-bold text-orange-500">
-        Hola Liga de Básquet 🏀
-      </h1>
+    <div className="min-h-screen bg-gray-900">
+       <Navbar/>
+       <NextMatchCard/>
+       <div className="pt-24">
+          <MatchesCarousel />
+       </div>
     </div>
+
   )
 }
 
