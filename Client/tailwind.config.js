@@ -5,7 +5,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'cyber-1': ['"Lacquer"', 'display'],
+        'cyber-2': ['"Quintessential"', 'cursive'],
+      },
+    },
   },
   plugins: [],
 }

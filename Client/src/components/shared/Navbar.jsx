@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Logo from '../ui/Logo';
+
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);

@@ -12,21 +12,13 @@ export default function NextMatchCard(){
       shadow-xl
     ">
       
-      {/* Título más pequeño */}
       <h3 className="mb-1 text-[10px] font-bold uppercase tracking-wider text-gray-400">
         PRÓXIMA FECHA:
       </h3>
       
-      {/* Fecha más compacta */}
       <p className="mb-2 text-base font-bold leading-tight">
         Sábado 01/01/2026
       </p>
-      
-      {/* Enlace a Google Maps.
-         target="_blank" abre en pestaña nueva.
-         rel="noopener noreferrer" es por seguridad.
-         hover:text-blue-300: Cambia de color al pasar el mouse para indicar que es clickeable.
-      */}
       <a 
         href="https://www.google.com/maps/search/?api=1&query=Plaza+Candioti" 
         target="_blank" 
