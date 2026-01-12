@@ -6,11 +6,7 @@ export default function MatchesCarousel() {
   const partidosInfinitos = [...partidos, ...partidos];
 
   return (
-
-    <section className="
-      relative w-screen left-1/2 -translate-x-1/2 
-      py-6 overflow-hidden bg-transparent
-    "> 
+    <section className="w-full overflow-hidden bg-transparent"> 
       
       <style>{`
         @keyframes slide {
@@ -18,21 +14,12 @@ export default function MatchesCarousel() {
           to { transform: translateX(-50%); }
         }
         .animate-slide {
-          animation: slide 30s linear infinite;
+          animation: slide 40s linear infinite;
         }
-        /* .carousel-container:hover .animate-slide {
-          animation-play-state: paused;
-        } 
-        */ ` /// La ultima parte queda por si se quiere pausar al pasar el cursor por encima 
-        }</style>
-      <div className="mb-4 px-4 md:px-10">
-        <h2 className="text-sm font-bold uppercase tracking-wider text-gray-400">
-          Últimos Resultados
-        </h2>
-      </div>
+      `}</style>
 
-      <div className="carousel-container relative w-full overflow-hidden">
-        <div className="flex w-max gap-4 animate-slide">
+      <div className="carousel-container relative w-full py-4">
+        <div className="flex w-max gap-4 animate-slide px-4">
           
           {partidosInfinitos.map((partido, index) => {
             const equipoA = teams.find(t => t.id === partido.teamAId);
@@ -53,11 +40,6 @@ export default function MatchesCarousel() {
             );
           })}
         </div>
-        
-        {/* Efectos laterales --- pueden quitarse si no gustan  */} 
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-gray-900 via-gray-900/80 to-transparent z-10"></div>
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-gray-900 via-gray-900/80 to-transparent z-10"></div>
-
       </div>
     </section>
   );

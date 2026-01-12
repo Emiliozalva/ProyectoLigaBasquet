@@ -1,4 +1,9 @@
 @import "tailwindcss";
+body {
+  @apply bg-zinc-950 text-gray-100; /* Zinc-950 es un negro/gris muy elegante, menos duro que el negro puro */
+  margin: 0;
+  padding: 0;
+}
 @layer utilities {
   /* Efecto Glitch General (Temblor y separación de color) */
   @keyframes glitch-shake {

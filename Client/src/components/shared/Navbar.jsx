@@ -1,32 +1,58 @@
 import React, { useState } from 'react';
-import Logo from '../ui/Logo';
-
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const linkStyle = "hover:text-black/60 transition-colors duration-200 cursor-pointer";
+
+  const handleAboutClick = (e) => {
+    e.preventDefault();
+    setIsOpen(false); 
+
+    if (location.pathname === '/') {
+      const section = document.getElementById('about');
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      navigate('/#about'); 
+
+    }
+  };
 
   return (
     <>
-      
       <nav className={`
         fixed top-6 left-1/2 z-50 -translate-x-1/2
         rounded-full
         bg-white/30 backdrop-blur-md border border-white/20 shadow-lg
         transition-all duration-300
         ${isOpen ? 'bg-white/50' : 'hover:bg-white/40'}
-        px-6 py-3 /* Unificamos padding */
+        px-6 py-3
         w-auto max-w-[90%]
       `}>
         
         <div className="flex items-center justify-between gap-6">
+
           <ul className="hidden md:flex items-center gap-8 font-sans text-sm font-medium text-gray-900">
-            <li><a href="#inicio" className={linkStyle}>Inicio</a></li>
-            <li><a href="#galeria" className={linkStyle}>Galería</a></li>
-            <li><a href="#posiciones" className={linkStyle}>Posiciones</a></li>
-            <li><a href="#about" className={linkStyle}>About us</a></li>
-            <li><a href="#inscripciones" className={linkStyle}>Inscripciones</a></li>
-            <li><a href="#ingresar" className={linkStyle}>Ingresar</a></li>
+            <li><Link to="/" className={linkStyle}>Inicio</Link></li>
+            <li><Link to="/galeria" className={linkStyle}>Galería</Link></li>
+            <li><Link to="/torneo" className={linkStyle}>Torneo</Link></li>
+            
+            <li>
+              <a href="#about" onClick={handleAboutClick} className={linkStyle}>
+                About us
+              </a>
+            </li>
+
+            <li>
+              <span className={`${linkStyle} opacity-50 cursor-not-allowed`} title="Próximamente">
+                Inscripción
+              </span>
+            </li>
           </ul>
 
           <button 
@@ -46,6 +72,7 @@ export function Navbar() {
           </button>
         </div>
       </nav>
+
       {isOpen && (
         <div className="
           fixed top-24 left-1/2 z-40 -translate-x-1/2
@@ -57,13 +84,21 @@ export function Navbar() {
           animate-in slide-in-from-top-4 fade-in duration-200
         ">
           <ul className="flex flex-col gap-6 text-center text-lg font-medium text-gray-800">
-            <li><a href="#inicio" onClick={() => setIsOpen(false)}>Inicio</a></li>
-            <li><a href="#galeria" onClick={() => setIsOpen(false)}>Galería</a></li>
-            <li><a href="#posiciones" onClick={() => setIsOpen(false)}>Posiciones</a></li>
-            <li><a href="#about" onClick={() => setIsOpen(false)}>About us</a></li>
-            <li><a href="#inscripciones" onClick={() => setIsOpen(false)}>Inscripciones</a></li>
+            <li><Link to="/" onClick={() => setIsOpen(false)}>Inicio</Link></li>
+            <li><Link to="/galeria" onClick={() => setIsOpen(false)}>Galería</Link></li>
+            <li><Link to="/torneo" onClick={() => setIsOpen(false)}>Torneo</Link></li>
+            
+            <li>
+              <a href="#about" onClick={handleAboutClick}>About us</a>
+            </li>
+            
             <hr className="border-gray-300/50" /> 
-            <li><a href="#ingresar" onClick={() => setIsOpen(false)}>Ingresar</a></li>
+            
+            <li>
+              <span className="text-gray-400 cursor-not-allowed">
+                Inscripción
+              </span>
+            </li>
           </ul>
         </div>
       )}

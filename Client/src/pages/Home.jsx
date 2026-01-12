@@ -1,20 +1,34 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import NextMatchCard from '../components/shared/NextMatchCard'
-import MatchesCarousel from '../components/shared/MatchesCarousel'
 import HeroAnimation from '../components/ui/HeroAnimation'
+import Sponsors from '../components/shared/Sponsors'
+import AboutUs2 from '../components/shared/AboutUs2'
+
 
 const Home = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash === '#about') {
+      const section = document.getElementById('about');
+      if (section) {
+        setTimeout(() => { 
+          section.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [location]);
   return (
-    <div className="pb-10">
+    <div className="w-full bg-zinc-950">
+      <NextMatchCard />
       <HeroAnimation />
-      <div className="space-y-8 mt-8">
-        <div className="relative z-10">
-           <NextMatchCard />
-        </div>
-        <div className="container mx-auto px-4">
-           <MatchesCarousel />
-        </div>
+      <div className="w-full">
+        <AboutUs2/>
+        <Sponsors/>
+        
       </div>
+
     </div>
   )
 }

@@ -8,7 +8,7 @@ import Footer from '../components/shared/Footer';
 export default function PublicLayout() {
   return (
     
-    <div className="min-h-screen flex flex-col bg-gray-50 font-sans selection:bg-orange-100 selection:text-orange-600">
+    <div className="min-h-screen flex flex-col font-sans selection:bg-orange-500 selection:text-white">
       
       <Navbar />
 
