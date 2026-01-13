@@ -55,7 +55,7 @@ export default function NextMatchCard() {
         <div className="w-full h-px bg-white/10 my-1.5"></div>
 
         <a 
-          href="https://www.google.com/maps/search/?api=1&query=Plaza+Candioti" 
+          href="https://maps.app.goo.gl/EQv24LGnFbpCi7pT9" 
           target="_blank" 
           rel="noopener noreferrer"
           className="group flex items-center gap-1.5 text-[10px] font-medium text-zinc-400 hover:text-orange-500 transition-colors"
