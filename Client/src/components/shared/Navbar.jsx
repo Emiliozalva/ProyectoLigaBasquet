@@ -39,8 +39,10 @@ export function Navbar() {
 
           <ul className="hidden md:flex items-center gap-8 font-sans text-sm font-medium text-gray-900">
             <li><Link to="/" className={linkStyle}>Inicio</Link></li>
-            <li><Link to="/galeria" className={linkStyle}>Galería</Link></li>
+            <li><Link to="/galeria" className={linkStyle}>Galeria y Novedades</Link></li>
             <li><Link to="/torneo" className={linkStyle}>Torneo</Link></li>
+            
+            
             
             <li>
               <a href="#about" onClick={handleAboutClick} className={linkStyle}>
@@ -85,7 +87,7 @@ export function Navbar() {
         ">
           <ul className="flex flex-col gap-6 text-center text-lg font-medium text-gray-800">
             <li><Link to="/" onClick={() => setIsOpen(false)}>Inicio</Link></li>
-            <li><Link to="/galeria" onClick={() => setIsOpen(false)}>Galería</Link></li>
+            <li><Link to="/galeria" onClick={() => setIsOpen(false)}>Galeria y Novedades</Link></li>
             <li><Link to="/torneo" onClick={() => setIsOpen(false)}>Torneo</Link></li>
             
             <li>
