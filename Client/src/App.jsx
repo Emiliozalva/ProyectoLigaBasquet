@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import Torneo from './pages/Torneo'   
 import Galeria from './pages/Galeria' 
 import Admin from './pages/Admin'
+import LoginAdmin from './pages/LoginAdmin'
 
 function App() {
   return (
@@ -16,7 +17,9 @@ function App() {
         <Route path="galeria" element={<Galeria />} />
 
       </Route>
+      <Route path="/login-admin" element={<LoginAdmin/>}/>
       <Route path="/admin" element={<Admin />} />
+      
     </Routes>
   )
 }

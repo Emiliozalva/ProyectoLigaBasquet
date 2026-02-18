@@ -1,0 +1,71 @@
+import React, { useState } from 'react';
+import { obtenerTablaGeneral } from '../../data/mockDB';
+
+export default function TablaPosiciones() {
+  const [tabla] = useState(obtenerTablaGeneral());
+
+  return (
+    <div className="w-full">
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white flex items-center gap-3">
+          <span className="bg-orange-600 w-2 h-8 block rounded-sm"></span>
+          Posiciones
+        </h2>
+      </div>
+
+      <div className="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl">
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm text-left text-zinc-300">
+            <thead className="text-xs text-zinc-500 uppercase bg-black border-b border-zinc-800">
+              <tr>
+                <th className="px-4 py-4 font-black w-12 text-center">#</th>
+                <th className="px-4 py-4 font-black">Equipo</th>
+                <th className="px-4 py-4 text-center font-black text-white">PTS</th>
+                <th className="px-4 py-4 text-center font-black">Fechas Jugadas</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-zinc-800/50">
+              {tabla.map((fila, index) => {
+                const isTop4 = index < 4; 
+                
+                return (
+                  <tr 
+                    key={fila.id} 
+                    className="hover:bg-zinc-800/80 transition-colors group"
+                  >
+                    <td className="px-4 py-3 text-center">
+                      <span className={`inline-flex w-6 h-6 items-center justify-center rounded text-xs font-bold ${
+                        isTop4 ? 'bg-orange-600/20 text-orange-500' : 'bg-zinc-800 text-zinc-500'
+                      }`}>
+                        {index + 1}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3 font-bold text-white flex items-center gap-3">
+                      <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center text-[10px] uppercase border border-zinc-700 group-hover:border-orange-500 transition-colors">
+                        {fila.nombre.substring(0, 2)}
+                      </div>
+                      {fila.nombre}
+                    </td>
+                    <td className="px-4 py-3 text-center font-black text-orange-500 text-base">
+                      {fila.puntos}
+                    </td>
+                    <td className="px-4 py-3 text-center font-bold">
+                      10
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <div className="mt-4 flex gap-4 text-xs text-zinc-500 font-medium">
+        <div className="flex items-center gap-2">
+          <span className="w-3 h-3 rounded bg-orange-600/20 border border-orange-500/50 block"></span>
+          Zona de Clasificación
+        </div>
+      </div>
+    </div>
+  );
+}
