@@ -1,10 +1,12 @@
 import React from 'react';
 import TablaPosiciones from '../components/shared/TablaPosiciones';
 import EquiposGrid from '../components/shared/EquiposGrid';
+import NextMatchCard from '../components/shared/NextMatchCard';
 
 export default function Torneo() {
   return (
     <div className="bg-black min-h-screen pt-24 pb-20">
+      <NextMatchCard/>
       
       <div className="py-12 px-6 text-center text-white border-b border-white/5 mb-12">
         <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4">

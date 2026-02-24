@@ -13,8 +13,8 @@ export default function Footer() {
              <Logo /> 
           </div>
           <p className="text-zinc-600 text-xs max-w-md">
-             La liga de básquet amateur más emocionante de la ciudad. <br/>
-             Organización profesional y pura pasión.
+             La liga de básquet más emocionante de la ciudad. <br/>
+             Organización profesional y compromiso.
           </p>
         </div>
         <nav className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-zinc-300 font-medium">
@@ -22,7 +22,7 @@ export default function Footer() {
           <Link to="/torneo" className="hover:text-orange-500 transition-colors">Torneo</Link>
           <Link to="/galeria" className="hover:text-orange-500 transition-colors">Galería</Link>
           <a href="/#about" className="hover:text-orange-500 transition-colors">Nosotros</a>
-          <span className="text-zinc-600 cursor-not-allowed" title="Próximamente">Inscripción</span>
+          <Link to="/inscripciones" className="hover:text-orange-500 transition-colors">Inscripción</Link>
         </nav>
         <div className="flex flex-wrap justify-center gap-4 text-xs text-zinc-500">
           <span className="hover:text-zinc-300 cursor-pointer transition-colors">

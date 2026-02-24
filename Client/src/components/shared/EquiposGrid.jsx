@@ -1,7 +1,33 @@
-import React from 'react';
-import { teams } from '../../data/mockDB';
+import React, { useState, useEffect } from 'react';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../../firebase/config';
 
 export default function EquiposGrid() {
+  const [equipos, setEquipos] = useState([]);
+  const [cargando, setCargando] = useState(true);
+
+  useEffect(() => {
+    const obtenerEquipos = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "equipos"));
+        const equiposData = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        
+        equiposData.sort((a, b) => a.nombre.localeCompare(b.nombre));
+        
+        setEquipos(equiposData);
+      } catch (error) {
+        console.error("Error al obtener los equipos:", error);
+      } finally {
+        setCargando(false);
+      }
+    };
+
+    obtenerEquipos();
+  }, []);
+
   return (
     <div className="w-full mt-24">
       <div className="text-center mb-10">
@@ -13,25 +39,35 @@ export default function EquiposGrid() {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
-        {teams.map((equipo) => (
-          <div 
-            key={equipo.id}
-            className="group bg-zinc-900 border border-zinc-800 rounded-2xl p-6 flex flex-col items-center justify-center hover:bg-zinc-800 hover:border-orange-500/50 transition-all duration-300 cursor-pointer"
-          >
-            {/* Logo Placeholder */}
-            <div className="w-20 h-20 md:w-24 md:h-24 bg-black rounded-full mb-4 flex items-center justify-center shadow-lg border border-zinc-700 group-hover:scale-110 group-hover:border-orange-500 transition-all duration-300">
-               <span className="text-3xl font-black text-zinc-600 group-hover:text-orange-500 transition-colors">
-                  {equipo.name.charAt(0)}
-               </span>
+      {cargando ? (
+        <p className="text-center text-zinc-500 font-bold uppercase tracking-widest animate-pulse">
+          Cargando franquicias...
+        </p>
+      ) : equipos.length === 0 ? (
+        <p className="text-center text-zinc-500">
+          Aún no hay equipos inscriptos en la liga.
+        </p>
+      ) : (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+          {equipos.map((equipo) => (
+            <div 
+              key={equipo.id}
+              className="group bg-zinc-900 border border-zinc-800 rounded-2xl p-6 flex flex-col items-center justify-center hover:bg-zinc-800 hover:border-orange-500/50 transition-all duration-300"
+            >
+              <div className="w-20 h-20 md:w-24 md:h-24 bg-black rounded-full mb-4 flex items-center justify-center shadow-lg border border-zinc-700 group-hover:scale-110 group-hover:border-orange-500 transition-all duration-300">
+                 <span className="text-3xl font-black text-zinc-600 group-hover:text-orange-500 transition-colors uppercase">
+                    {/* Extraemos la primera letra del NOMBRE */}
+                    {equipo.nombre ? equipo.nombre.charAt(0) : '?'}
+                 </span>
+              </div>
+              
+              <h3 className="text-white font-bold text-sm md:text-base text-center uppercase tracking-wider group-hover:text-orange-400 transition-colors">
+                {equipo.nombre}
+              </h3>
             </div>
-            
-            <h3 className="text-white font-bold text-sm md:text-base text-center uppercase tracking-wider group-hover:text-orange-400 transition-colors">
-              {equipo.name}
-            </h3>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

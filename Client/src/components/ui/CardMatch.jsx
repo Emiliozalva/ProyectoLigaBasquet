@@ -2,7 +2,8 @@ import React from 'react';
 
 export default function CardMatch({ 
   teamA, logoA, scoreA, 
-  teamB, logoB, scoreB 
+  teamB, logoB, scoreB,
+  fecha // <-- Agregamos la propiedad aquí
 }) {
   const isAWin = scoreA > scoreB;
   const isBWin = scoreB > scoreA;
@@ -13,10 +14,17 @@ export default function CardMatch({
       flex flex-col gap-2 
       rounded-xl 
       border border-white/5 
-      bg-zinc-900/60 backdrop-blur-md /* Más transparente y sutil */
+      bg-zinc-900/60 backdrop-blur-md 
       p-3 
       hover:bg-zinc-800/80 transition-colors duration-300
     ">
+      
+      {/* Mostramos la fecha solo si existe */}
+      {fecha && (
+        <div className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest text-center pb-1 border-b border-white/5 mb-1">
+          {fecha}
+        </div>
+      )}
       
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-2 overflow-hidden">

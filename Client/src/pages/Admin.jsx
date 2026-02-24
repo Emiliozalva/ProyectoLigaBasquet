@@ -5,7 +5,6 @@ import AdminPartidos from '../components/shared/AdminPartidos';
 import AdminTabla from '../components/shared/AdminTabla';
 import AdminNovedades from '../components/shared/AdminNovedades';
 
-// 1. IMPORTAMOS EL MOCK DATA
 import { teams, partidos as initialMatches, obtenerTablaGeneral } from '../data/mockDB.jsx';
 
 export default function Admin() {
@@ -18,7 +17,6 @@ export default function Admin() {
     { id: 2, titulo: "Nuevas Camisetas", texto: "Consectetur...", activa: true },
   ]);
 
-  // Estado para la "Próxima Fecha" (Cartel de Aviso)
   const [nextMatchData, setNextMatchData] = useState({
     titulo: "Fecha 5 - Fase de Grupos",
     fecha: "2026-01-20",
@@ -27,16 +25,10 @@ export default function Admin() {
     linkMapa: "" 
   });
 
-  // 2. ESTADO PARA PARTIDOS (Inicializado con el Mock)
-  // Agregamos un campo 'finalizado' localmente para manejar la UI, 
-  // ya que el mock de partidos solo tiene scores.
   const [partidos, setPartidos] = useState(
     initialMatches.map(m => ({ ...m, finalizado: false }))
   );
 
-  // 3. ESTADO PARA TABLA (Calculado con la función del mock)
-  // Nota: Si quieres editarla manualmente, usa useState. 
-  // Si quieres que sea automática basada en el mock, usa la función.
   const [tabla, setTabla] = useState(obtenerTablaGeneral());
 
   return (
@@ -71,7 +63,7 @@ export default function Admin() {
               setNextMatchData={setNextMatchData}
               partidos={partidos}
               setPartidos={setPartidos}
-              teams={teams} // <--- PASAMOS LA LISTA DE EQUIPOS (Lookup)
+              teams={teams} 
             />
           )}
           

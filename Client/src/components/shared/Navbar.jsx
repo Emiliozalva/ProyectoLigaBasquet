@@ -19,7 +19,6 @@ export function Navbar() {
       }
     } else {
       navigate('/#about'); 
-
     }
   };
 
@@ -36,13 +35,10 @@ export function Navbar() {
       `}>
         
         <div className="flex items-center justify-between gap-6">
-
           <ul className="hidden md:flex items-center gap-8 font-sans text-sm font-medium text-gray-900">
             <li><Link to="/" className={linkStyle}>Inicio</Link></li>
             <li><Link to="/galeria" className={linkStyle}>Galeria y Novedades</Link></li>
             <li><Link to="/torneo" className={linkStyle}>Torneo</Link></li>
-            
-            
             
             <li>
               <a href="#about" onClick={handleAboutClick} className={linkStyle}>
@@ -51,9 +47,9 @@ export function Navbar() {
             </li>
 
             <li>
-              <span className={`${linkStyle} opacity-50 cursor-not-allowed`} title="Próximamente">
+              <Link to="/inscripciones" className={linkStyle}>
                 Inscripción
-              </span>
+              </Link>
             </li>
           </ul>
 
@@ -97,9 +93,9 @@ export function Navbar() {
             <hr className="border-gray-300/50" /> 
             
             <li>
-              <span className="text-gray-400 cursor-not-allowed">
+              <Link to="/inscripciones" onClick={() => setIsOpen(false)} className="font-bold text-orange-600">
                 Inscripción
-              </span>
+              </Link>
             </li>
           </ul>
         </div>
