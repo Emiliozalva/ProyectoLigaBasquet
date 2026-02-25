@@ -31,7 +31,7 @@ export default function Inscripciones() {
       
       <div className="text-center mb-12">
         <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white">
-          Inscripción al <span className="text-orange-600">Torneo</span>
+          Inscripción a la <span className="text-orange-600">Proxima Fecha</span>
         </h1>
       </div>
 
