@@ -5,8 +5,6 @@ import { db } from "../../firebase/config";
 export default function NextMatchCard() {
   const [isVisible, setIsVisible] = useState(true);
   
-  // Le damos valores por defecto en lugar de null. 
-  // Así la tarjeta SIEMPRE aparece, incluso si la base de datos está vacía.
   const [datosFecha, setDatosFecha] = useState({
     dia: "A confirmar",
     hora: "",
@@ -20,7 +18,6 @@ export default function NextMatchCard() {
         const docRef = doc(db, "configuracion", "proxima_fecha");
         const docSnap = await getDoc(docRef);
         
-        // Solo sobreescribe los valores por defecto si encuentra el documento en Firebase
         if (docSnap.exists()) {
           setDatosFecha(docSnap.data());
         }

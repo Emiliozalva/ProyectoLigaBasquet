@@ -97,7 +97,6 @@ export default function AdminSidebar({ activeTab, setActiveTab }) {
         />
       </nav>
 
-      {/* Footer / Salir */}
       <div className="p-4 border-t border-white/10">
         <button 
           onClick={handleLogout}

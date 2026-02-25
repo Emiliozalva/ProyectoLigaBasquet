@@ -50,7 +50,6 @@ export default function LoginAdmin() {
           </p>
         </div>
 
-        {/* Mensaje de error si se equivocan en la clave */}
         {error && (
           <div className="bg-red-500/10 border border-red-500/50 text-red-500 text-sm font-bold p-3 rounded-lg mb-6 text-center">
             {error}

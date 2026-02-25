@@ -6,25 +6,22 @@ export default function AdminResumen() {
   const [inscripcionesAbiertas, setInscripcionesAbiertas] = useState(false);
   const [cargandoEstado, setCargandoEstado] = useState(true);
   
-  // Estados para las estadísticas reales
   const [stats, setStats] = useState({ equipos: 0, novedades: 0 });
 
   useEffect(() => {
     const cargarDatos = async () => {
       try {
-        // 1. Cargar estado de inscripciones
         const docRef = doc(db, "configuracion", "inscripciones");
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
           setInscripcionesAbiertas(docSnap.data().abiertas);
         }
 
-        // 2. Cargar cantidad real de equipos y novedades desde Firebase
         const equiposSnap = await getDocs(collection(db, "equipos"));
         const novedadesSnap = await getDocs(collection(db, "novedades"));
         
         setStats({
-          equipos: equiposSnap.size, // .size nos da el número total de documentos en la colección
+          equipos: equiposSnap.size, 
           novedades: novedadesSnap.size
         });
       } catch (error) {
@@ -37,16 +34,15 @@ export default function AdminResumen() {
     cargarDatos();
   }, []);
 
-  // Función para cambiar el estado en Firebase
   const toggleInscripciones = async () => {
     const nuevoEstado = !inscripcionesAbiertas;
-    setInscripcionesAbiertas(nuevoEstado); // Actualización visual rápida
+    setInscripcionesAbiertas(nuevoEstado); 
     
     try {
       await setDoc(doc(db, "configuracion", "inscripciones"), { abiertas: nuevoEstado });
     } catch (error) {
       console.error("Error al guardar estado de inscripciones:", error);
-      // Revertimos si falla
+   
       setInscripcionesAbiertas(!nuevoEstado);
       alert("Error al actualizar el estado en el servidor.");
     }
@@ -56,7 +52,6 @@ export default function AdminResumen() {
     <div className="space-y-6 animate-in fade-in duration-300">
       <h2 className="text-2xl font-bold text-white mb-6">Panel de Control</h2>
       
-      {/* Card de Inscripciones */}
       <div className="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4">
         <div>
           <h3 className="text-lg font-bold text-white">Estado de Inscripciones</h3>
@@ -83,7 +78,6 @@ export default function AdminResumen() {
         </button>
       </div>
 
-      {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl">
           <p className="text-zinc-500 text-xs font-bold uppercase">Novedades Activas</p>

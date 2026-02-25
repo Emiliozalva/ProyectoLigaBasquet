@@ -26,7 +26,6 @@ export default function Novedades() {
     obtenerNovedades();
   }, []);
 
-  // Si no hay novedades publicadas y ya terminó de cargar, ocultamos la sección entera
   if (!cargando && novedades.length === 0) {
     return null;
   }

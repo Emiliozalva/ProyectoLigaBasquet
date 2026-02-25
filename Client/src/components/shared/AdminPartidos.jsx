@@ -4,40 +4,32 @@ import { db } from '../../firebase/config';
 
 export default function AdminPartidos() {
   
-  // --- ESTADO: PRÓXIMA FECHA ---
   const [fechaData, setFechaData] = useState({ titulo: '', dia: '', hora: '', lugar: '', linkMaps: '' });
   const [guardandoFecha, setGuardandoFecha] = useState(false);
 
-  // --- ESTADO: EQUIPOS Y PARTIDOS ---
   const [equipos, setEquipos] = useState([]);
   const [partidos, setPartidos] = useState([]);
   
-  // Estado para el formulario del nuevo partido
   const [nuevoPartido, setNuevoPartido] = useState({
     equipoA: '',
     resultadoA: '',
     equipoB: '',
     resultadoB: '',
-    numeroFecha: '' // Ej: "Fecha 1", "Semifinal"
+    numeroFecha: '' 
   });
   const [creandoPartido, setCreandoPartido] = useState(false);
 
-  // --- CARGA INICIAL DE DATOS ---
   useEffect(() => {
     const cargarDatos = async () => {
       try {
-        // 1. Cargar Próxima Fecha
         const docSnap = await getDoc(doc(db, "configuracion", "proxima_fecha"));
         if (docSnap.exists()) setFechaData(docSnap.data());
 
-        // 2. Cargar Lista de Equipos (Para los selectores)
         const equiposSnap = await getDocs(collection(db, "equipos"));
         const equiposList = equiposSnap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        // Ordenamos alfabéticamente para que sea más fácil buscar en el select
         equiposList.sort((a, b) => a.nombre.localeCompare(b.nombre));
         setEquipos(equiposList);
 
-        // 3. Cargar Partidos ya creados
         obtenerPartidos();
       } catch (error) {
         console.error("Error al cargar datos:", error);
@@ -46,14 +38,12 @@ export default function AdminPartidos() {
     cargarDatos();
   }, []);
 
-  // Función separada para recargar solo los partidos después de crear/eliminar uno
   const obtenerPartidos = async () => {
     const partidosSnap = await getDocs(collection(db, "partidos"));
     const partidosList = partidosSnap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     setPartidos(partidosList);
   };
 
-  // --- FUNCIONES: PRÓXIMA FECHA ---
   const handleGuardarFecha = async () => {
     setGuardandoFecha(true);
     try {
@@ -66,11 +56,9 @@ export default function AdminPartidos() {
     }
   };
 
-  // --- FUNCIONES: PARTIDOS ---
   const handleCrearPartido = async (e) => {
     e.preventDefault();
     
-    // Validación básica
     if (!nuevoPartido.equipoA || !nuevoPartido.equipoB) {
       return alert("Debes seleccionar ambos equipos.");
     }
@@ -83,10 +71,10 @@ export default function AdminPartidos() {
       await addDoc(collection(db, "partidos"), nuevoPartido);
       alert("¡Partido creado con éxito!");
       
-      // Limpiamos el formulario (dejamos "numeroFecha" por si quiere cargar varios de la misma fecha)
+  
       setNuevoPartido({ ...nuevoPartido, equipoA: '', resultadoA: '', equipoB: '', resultadoB: '' });
       
-      // Recargamos la lista
+    
       obtenerPartidos();
     } catch (error) {
       console.error("Error al crear partido:", error);
@@ -100,7 +88,6 @@ export default function AdminPartidos() {
     if (window.confirm("¿Estás seguro de que deseas eliminar este partido?")) {
       try {
         await deleteDoc(doc(db, "partidos", id));
-        // Filtramos la lista localmente para no hacer otra petición a Firebase
         setPartidos(partidos.filter(p => p.id !== id));
       } catch (error) {
         console.error("Error al eliminar partido:", error);
@@ -190,7 +177,6 @@ export default function AdminPartidos() {
 
             <div className="text-center hidden md:block text-zinc-600 font-black text-xl">VS</div>
 
-            {/* Equipo B */}
             <div className="md:col-span-2">
               <label className="block text-xs text-zinc-500 mb-1 uppercase font-bold">Equipo Visitante</label>
               <select 
@@ -237,13 +223,11 @@ export default function AdminPartidos() {
             partidos.map((p) => (
               <div key={p.id} className="flex flex-col md:flex-row items-center justify-between p-4 rounded-xl border border-zinc-800 bg-black gap-4">
                  
-                 {/* Info del partido */}
                  <div className="flex-1 w-full">
                     <span className="text-xs text-orange-500 font-bold uppercase tracking-wider block mb-2">{p.numeroFecha}</span>
                     <div className="flex items-center justify-between md:justify-start gap-4">
                       <span className="text-white font-bold w-1/3 text-right">{p.equipoA}</span>
                       
-                      {/* Cuadro de resultados */}
                       <div className="bg-zinc-900 border border-zinc-800 px-4 py-1 rounded font-black text-lg min-w-[80px] text-center text-zinc-300 shadow-inner">
                         {p.resultadoA || '-'} : {p.resultadoB || '-'}
                       </div>
@@ -252,7 +236,6 @@ export default function AdminPartidos() {
                     </div>
                  </div>
                  
-                 {/* Botón Eliminar */}
                  <button 
                     onClick={() => handleEliminarPartido(p.id)}
                     className="text-zinc-500 hover:text-red-500 hover:bg-red-500/10 p-2 rounded transition-colors"
