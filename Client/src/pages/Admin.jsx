@@ -5,8 +5,6 @@ import AdminPartidos from '../components/shared/AdminPartidos';
 import AdminTabla from '../components/shared/AdminTabla';
 import AdminNovedades from '../components/shared/AdminNovedades';
 
-import { teams, partidos as initialMatches, obtenerTablaGeneral } from '../data/mockDB.jsx';
-
 export default function Admin() {
   const [activeTab, setActiveTab] = useState('resumen');
   
@@ -25,18 +23,26 @@ export default function Admin() {
     linkMapa: "" 
   });
 
-  const [partidos, setPartidos] = useState(
-    initialMatches.map(m => ({ ...m, finalizado: false }))
-  );
+  
+  const [partidos, setPartidos] = useState([]);
 
-  const [tabla, setTabla] = useState(obtenerTablaGeneral());
+  
+  const [tabla, setTabla] = useState([]);
+
+ 
+  const [teams] = useState([
+    { id: "1", nombre: "Los Toros", logo: "" },
+    { id: "2", nombre: "Las Águilas", logo: "" },
+    { id: "3", nombre: "Club Central", logo: "" },
+    { id: "4", nombre: "Deportivo Norte", logo: "" }
+  ]);
 
   return (
     <div className="min-h-screen bg-black text-zinc-100 font-sans flex flex-col md:flex-row">
       
       <AdminSidebar activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      <main className="flex-1 bg-black p-4 md:p-8 lg:p-12 overflow-y-auto h-screen">
+      <main className="flex-1 bg-black p-4 pb-24 md:p-8 lg:p-12 overflow-y-auto h-screen">
         <div className="max-w-5xl mx-auto">
           
           <header className="mb-8">
