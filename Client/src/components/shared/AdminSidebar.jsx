@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../firebase/config';
 
-// Componente individual modificado para adaptarse a ambas vistas
 const SidebarItem = ({ id, icon, label, isActive, onClick }) => (
   <button
     onClick={() => onClick(id)}
@@ -36,12 +35,9 @@ export default function AdminSidebar({ activeTab, setActiveTab }) {
 
   return (
     <>
-      {/* DISEÑO ESCRITORIO (Sidebar Izquierdo)
-        Se oculta en móviles (hidden md:flex)
-      */}
+
       <aside className="hidden md:flex w-64 bg-zinc-950 border-r border-white/10 flex-col h-screen sticky top-0 z-50">
         
-        {/* Header Desktop */}
         <div className="p-6 border-b border-white/10 flex items-center gap-3">
           <div className="w-8 h-8 bg-orange-600 rounded-md flex items-center justify-center font-black text-black">
             A
@@ -54,13 +50,10 @@ export default function AdminSidebar({ activeTab, setActiveTab }) {
           </div>
         </div>
         
-        {/* Menú Desktop */}
         <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
-          {/* ... Los items se renderizan a través del bloque común abajo ... */}
           <NavItems activeTab={activeTab} setActiveTab={setActiveTab} />
         </nav>
 
-        {/* Footer Desktop */}
         <div className="p-4 border-t border-white/10">
           <button 
             onClick={handleLogout}
@@ -74,11 +67,7 @@ export default function AdminSidebar({ activeTab, setActiveTab }) {
         </div>
       </aside>
 
-      {/* DISEÑO MÓVIL (Barra Inferior y Header Superior)
-        Se oculta en escritorio (md:hidden)
-      */}
-      
-      {/* Header Mobile - Se queda arriba */}
+      {/* DISEÑO MÓVIL (Barra Inferior)*/}
       <div className="md:hidden flex items-center justify-between p-4 bg-zinc-950 border-b border-white/10 sticky top-0 z-40">
         <div className="flex items-center gap-2">
           <div className="w-6 h-6 bg-orange-600 rounded flex items-center justify-center font-black text-black text-xs">
@@ -95,7 +84,6 @@ export default function AdminSidebar({ activeTab, setActiveTab }) {
         </button>
       </div>
 
-      {/* Navbar Mobile - Se queda abajo pegada */}
       <nav className="md:hidden fixed bottom-0 left-0 w-full bg-zinc-950 border-t border-white/10 z-50 px-2 pb-safe pt-1 flex justify-between items-center">
          <NavItems activeTab={activeTab} setActiveTab={setActiveTab} />
       </nav>
@@ -104,7 +92,7 @@ export default function AdminSidebar({ activeTab, setActiveTab }) {
   );
 }
 
-// Componente extraído para no repetir el código de los SVG en móvil y desktop
+
 const NavItems = ({ activeTab, setActiveTab }) => (
   <>
     <SidebarItem 
