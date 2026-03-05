@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import AdminSidebar from '../components/shared/AdminSideBar';
+import AdminSidebar from '../components/shared/AdminSideBar'; // (o AdminSideBar dependiendo de tu archivo)
 import AdminResumen from '../components/shared/AdminResumen';
 import AdminPartidos from '../components/shared/AdminPartidos';
 import AdminTabla from '../components/shared/AdminTabla';
 import AdminNovedades from '../components/shared/AdminNovedades';
+import AdminInstagram from '../components/shared/AdminInstagram'; // <-- 1. IMPORTAMOS EL NUEVO COMPONENTE
 
 export default function Admin() {
   const [activeTab, setActiveTab] = useState('resumen');
@@ -23,13 +24,9 @@ export default function Admin() {
     linkMapa: "" 
   });
 
-  
   const [partidos, setPartidos] = useState([]);
-
-  
   const [tabla, setTabla] = useState([]);
 
- 
   const [teams] = useState([
     { id: "1", nombre: "Los Toros", logo: "" },
     { id: "2", nombre: "Las Águilas", logo: "" },
@@ -51,6 +48,7 @@ export default function Admin() {
                {activeTab === 'partidos' && "Gestión de Fechas"}
                {activeTab === 'tabla' && "Tabla del Torneo"}
                {activeTab === 'novedades' && "Editor de Novedades"}
+               {activeTab === 'instagram' && "Publicaciones de Instagram"} {/* <-- 2. TÍTULO */}
              </h2>
              <p className="text-zinc-500 text-sm">Administración del sitio web</p>
           </header>
@@ -79,6 +77,11 @@ export default function Admin() {
           
           {activeTab === 'novedades' && (
             <AdminNovedades novedades={novedades} setNovedades={setNovedades} />
+          )}
+
+          {/* --- 3. RENDERIZAMOS EL COMPONENTE --- */}
+          {activeTab === 'instagram' && (
+            <AdminInstagram />
           )}
           
         </div>

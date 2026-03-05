@@ -21,7 +21,7 @@ export default function Footer() {
           <Link to="/" className="hover:text-orange-500 transition-colors">Inicio</Link>
           <Link to="/torneo" className="hover:text-orange-500 transition-colors">Torneo</Link>
           <Link to="/galeria" className="hover:text-orange-500 transition-colors">Galería</Link>
-          <a href="/#about" className="hover:text-orange-500 transition-colors">Nosotros</a>
+          <Link to="/aboutUs" className="hover:text-orange-500 transition-colors">About Us</Link>
           <Link to="/inscripciones" className="hover:text-orange-500 transition-colors">Inscripción</Link>
         </nav>
         <div className="flex flex-wrap justify-center gap-4 text-xs text-zinc-500">

@@ -54,11 +54,15 @@ export default function EquiposGrid() {
               key={equipo.id}
               className="group bg-zinc-900 border border-zinc-800 rounded-2xl p-6 flex flex-col items-center justify-center hover:bg-zinc-800 hover:border-orange-500/50 transition-all duration-300"
             >
-              <div className="w-20 h-20 md:w-24 md:h-24 bg-black rounded-full mb-4 flex items-center justify-center shadow-lg border border-zinc-700 group-hover:scale-110 group-hover:border-orange-500 transition-all duration-300">
-                 <span className="text-3xl font-black text-zinc-600 group-hover:text-orange-500 transition-colors uppercase">
-                    {/* Extraemos la primera letra del NOMBRE */}
-                    {equipo.nombre ? equipo.nombre.charAt(0) : '?'}
-                 </span>
+              
+              <div className="w-20 h-20 md:w-24 md:h-24 bg-black rounded-full mb-4 flex items-center justify-center shadow-lg border border-zinc-700 group-hover:scale-110 group-hover:border-orange-500 transition-all duration-300 overflow-hidden">
+                {equipo.logo ? (
+                   <img src={equipo.logo} alt={equipo.nombre} className="w-full h-full object-cover" />
+                ) : (
+                   <span className="text-3xl font-black text-zinc-600 group-hover:text-orange-500 transition-colors uppercase">
+                     {equipo.nombre ? equipo.nombre.charAt(0) : '?'}
+                   </span>
+                )}
               </div>
               
               <h3 className="text-white font-bold text-sm md:text-base text-center uppercase tracking-wider group-hover:text-orange-400 transition-colors">

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { collection, addDoc, getDocs, deleteDoc, doc, orderBy, query } from 'firebase/firestore';
 import { db } from '../../firebase/config';
+import { uploadImageToCloudinary } from '../../utils/cloudinary'; // <-- IMPORTAMOS EL MOTOR DE SUBIDA
 
 export default function AdminNovedades() {
   const [novedades, setNovedades] = useState([]);
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [cargando, setCargando] = useState(false);
+  const [subiendoImagen, setSubiendoImagen] = useState(false); // <-- ESTADO PARA LA BARRA DE CARGA
   
   const [nuevaNovedad, setNuevaNovedad] = useState({
     titulo: '',
@@ -31,6 +33,22 @@ export default function AdminNovedades() {
     obtenerNovedades();
   }, []);
 
+  // --- FUNCIÓN PARA MANEJAR LA SUBIDA DE LA FOTO ---
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    setSubiendoImagen(true); // Mostramos "Subiendo..."
+    const url = await uploadImageToCloudinary(file); // Llamamos a Cloudinary
+    
+    if (url) {
+      setNuevaNovedad({ ...nuevaNovedad, imagen: url }); // Guardamos el link
+    } else {
+      alert("Hubo un error al subir la imagen. Intenta de nuevo.");
+    }
+    setSubiendoImagen(false); // Ocultamos "Subiendo..."
+  };
+
   const handleCrearNovedad = async (e) => {
     e.preventDefault();
     setCargando(true);
@@ -39,7 +57,7 @@ export default function AdminNovedades() {
       await addDoc(collection(db, "novedades"), {
         titulo: nuevaNovedad.titulo,
         texto: nuevaNovedad.texto,
-        imagen: nuevaNovedad.imagen || "https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&q=80&w=1000", // Imagen por defecto si lo dejan vacío
+        imagen: nuevaNovedad.imagen || "https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&q=80&w=1000",
         fechaCreacion: Date.now() 
       });
       
@@ -100,26 +118,41 @@ export default function AdminNovedades() {
               placeholder="Ej: Este sábado se juegan las finales..."
             />
           </div>
+          
+          {/* --- CAMBIO: INPUT DE TIPO ARCHIVO PARA LA IMAGEN --- */}
           <div>
-            <label className="block text-xs font-bold text-zinc-500 uppercase mb-2">Link de Imagen (Opcional)</label>
+            <label className="block text-xs font-bold text-zinc-500 uppercase mb-2">Imagen de la Novedad</label>
             <input 
-              type="url" 
-              value={nuevaNovedad.imagen}
-              onChange={(e) => setNuevaNovedad({...nuevaNovedad, imagen: e.target.value})}
-              className="w-full bg-zinc-900 border border-zinc-700 text-white rounded p-3 focus:border-orange-600 outline-none"
-              placeholder="https://ejemplo.com/imagen.jpg"
+              type="file" 
+              accept="image/*"
+              onChange={handleImageUpload}
+              className="w-full bg-zinc-900 border border-zinc-700 text-zinc-400 rounded p-2 focus:border-orange-600 outline-none
+                file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-zinc-800 file:text-white hover:file:bg-zinc-700 transition-all cursor-pointer"
             />
+            {/* Mensaje de carga */}
+            {subiendoImagen && <p className="text-orange-500 text-xs font-bold mt-2 animate-pulse">Subiendo imagen a la nube...</p>}
+            
+            {/* Vista previa de la foto */}
+            {nuevaNovedad.imagen && !subiendoImagen && (
+              <div className="mt-4 relative w-32 h-20 rounded-lg overflow-hidden border border-zinc-700">
+                <img src={nuevaNovedad.imagen} alt="Vista previa" className="w-full h-full object-cover" />
+              </div>
+            )}
           </div>
+
           <button 
             type="submit" 
-            disabled={cargando}
-            className="w-full bg-orange-600 hover:bg-orange-500 text-white font-bold py-3 rounded-lg uppercase tracking-widest transition-colors mt-2"
+            disabled={cargando || subiendoImagen} // Bloqueamos el botón si se está subiendo la foto
+            className={`w-full font-bold py-3 rounded-lg uppercase tracking-widest transition-colors mt-2 ${
+              cargando || subiendoImagen ? 'bg-zinc-800 text-zinc-500 cursor-not-allowed' : 'bg-orange-600 hover:bg-orange-500 text-white'
+            }`}
           >
             {cargando ? "Publicando..." : "Publicar Novedad"}
           </button>
         </form>
       )}
 
+      {/* --- LISTA DE NOVEDADES (Se mantiene igual) --- */}
       <div className="space-y-4">
         {novedades.length === 0 && !cargando ? (
           <p className="text-zinc-500 text-center py-4 text-sm">No hay novedades publicadas.</p>

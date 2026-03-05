@@ -12,7 +12,7 @@ import foto10 from "../assets//galeria/galeria10.jpg";
 import foto11 from "../assets/galeria/galeria11.jpg";
 import foto12 from "../assets/galeria/galeria12.jpg";
 import NextMatchCard from '../components/shared/NextMatchCard';
-import Novedades from '../components/shared/Novedades';
+import Novedades from '../components/shared/HeroNovedades';
 
 
 
@@ -40,7 +40,6 @@ export default function Galeria() {
   return (
     <div className="bg-black min-h-screen pt-24">
       <NextMatchCard/>
-      <Novedades />
       <div className="w-full"></div>
       <div className="w-full"></div>
       <div className="py-12 px-6 text-center text-white">

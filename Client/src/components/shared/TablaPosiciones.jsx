@@ -31,8 +31,7 @@ export default function TablaPosiciones() {
     <div className="w-full">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white flex items-center gap-3">
-          <span className="bg-orange-600 w-2 h-8 block rounded-sm"></span>
-          Posiciones
+
         </h2>
       </div>
 
@@ -77,9 +76,13 @@ export default function TablaPosiciones() {
                       </span>
                     </td>
                     <td className="px-4 py-3 font-bold text-white flex items-center gap-3">
-                      <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center text-[10px] uppercase border border-zinc-700 group-hover:border-orange-500 transition-colors">
-                        
-                        {fila.nombre ? fila.nombre.substring(0, 2) : "??"}
+                      {/* --- AQUÍ RENDERIZAMOS EL LOGO REAL O LAS LETRAS --- */}
+                      <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center text-[10px] uppercase border border-zinc-700 group-hover:border-orange-500 transition-colors overflow-hidden flex-shrink-0">
+                        {fila.logo ? (
+                           <img src={fila.logo} alt={fila.nombre} className="w-full h-full object-cover" />
+                        ) : (
+                           fila.nombre ? fila.nombre.substring(0, 2) : "??"
+                        )}
                       </div>
                       {fila.nombre}
                     </td>

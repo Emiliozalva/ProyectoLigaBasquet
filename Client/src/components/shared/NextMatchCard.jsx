@@ -73,7 +73,6 @@ export default function NextMatchCard() {
         
         <p className="text-sm font-bold leading-none tracking-tight text-white uppercase flex flex-col gap-1 mt-1.5">
           <span>{datosFecha.dia}</span>
-          {/* Solo mostramos la hora si el admin escribió algo */}
           {datosFecha.hora && (
             <span className="text-[10px] text-zinc-400">{datosFecha.hora}</span>
           )}

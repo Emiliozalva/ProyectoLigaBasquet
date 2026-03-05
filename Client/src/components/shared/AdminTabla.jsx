@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { collection, addDoc, getDocs, doc, deleteDoc, writeBatch } from 'firebase/firestore';
 import { db } from '../../firebase/config';
+import { uploadImageToCloudinary } from '../../utils/cloudinary'; // <-- IMPORTAMOS EL MOTOR DE SUBIDA
 
 export default function AdminTabla() {
   const [nombreEquipo, setNombreEquipo] = useState('');
   const [equipos, setEquipos] = useState([]);
   const [cargando, setCargando] = useState(false);
   const [guardandoTabla, setGuardandoTabla] = useState(false);
+  
+  // --- NUEVOS ESTADOS PARA EL LOGO DEL EQUIPO ---
+  const [logoUrl, setLogoUrl] = useState('');
+  const [subiendoLogo, setSubiendoLogo] = useState(false);
 
   const obtenerEquipos = async () => {
     try {
@@ -26,6 +31,22 @@ export default function AdminTabla() {
     obtenerEquipos();
   }, []);
 
+  // --- FUNCIÓN PARA SUBIR EL LOGO DEL EQUIPO ---
+  const handleLogoUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    setSubiendoLogo(true);
+    const url = await uploadImageToCloudinary(file);
+    
+    if (url) {
+      setLogoUrl(url); // Guardamos el link temporalmente hasta que se cree el equipo
+    } else {
+      alert("Hubo un error al subir el logo.");
+    }
+    setSubiendoLogo(false);
+  };
+
   const handleAgregarEquipo = async (e) => {
     e.preventDefault();
     if (!nombreEquipo.trim()) return;
@@ -36,9 +57,13 @@ export default function AdminTabla() {
         nombre: nombreEquipo,
         puntos: 0,
         fechasJugadas: 0,
-        logo: "" 
+        logo: logoUrl // <-- AGREGAMOS EL LOGO AL DOCUMENTO DE FIREBASE
       });
+      
+      // Limpiamos el formulario
       setNombreEquipo('');
+      setLogoUrl('');
+      
       obtenerEquipos();
       alert("¡Equipo creado exitosamente!");
     } catch (error) {
@@ -107,15 +132,38 @@ export default function AdminTabla() {
               type="text" 
               value={nombreEquipo}
               onChange={(e) => setNombreEquipo(e.target.value)}
-              placeholder="..."
+              placeholder="Ej: Los Toros"
               className="w-full bg-black border border-zinc-800 text-white rounded-lg p-3 focus:border-orange-500 outline-none transition-all"
               required
             />
           </div>
+
+          {/* --- INPUT PARA SUBIR EL LOGO DEL EQUIPO --- */}
+          <div>
+            <label className="block text-xs font-bold text-zinc-500 uppercase mb-2">Logo del Equipo (Opcional)</label>
+            <input 
+              type="file" 
+              accept="image/*"
+              onChange={handleLogoUpload}
+              className="w-full bg-black border border-zinc-800 text-zinc-400 rounded-lg p-2 focus:border-orange-500 outline-none 
+                file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-zinc-800 file:text-white hover:file:bg-zinc-700 cursor-pointer"
+            />
+            {subiendoLogo && <p className="text-orange-500 text-xs font-bold mt-2 animate-pulse">Subiendo escudo...</p>}
+            
+            {/* Vista previa del escudo */}
+            {logoUrl && !subiendoLogo && (
+              <div className="mt-3 w-16 h-16 rounded-full bg-black border border-zinc-700 flex items-center justify-center overflow-hidden">
+                <img src={logoUrl} alt="Logo preview" className="w-full h-full object-cover" />
+              </div>
+            )}
+          </div>
+
           <button 
             type="submit" 
-            disabled={cargando}
-            className="w-full bg-zinc-800 hover:bg-zinc-700 text-white font-bold uppercase tracking-widest py-3 rounded-lg transition-colors border border-zinc-700"
+            disabled={cargando || subiendoLogo} // Bloqueamos si se está subiendo el logo
+            className={`w-full font-bold uppercase tracking-widest py-3 rounded-lg transition-colors border mt-2 ${
+              cargando || subiendoLogo ? 'bg-zinc-800 border-zinc-800 text-zinc-500 cursor-not-allowed' : 'bg-zinc-800 hover:bg-zinc-700 border-zinc-700 text-white'
+            }`}
           >
             {cargando ? 'Creando...' : 'Crear Equipo'}
           </button>
@@ -143,6 +191,8 @@ export default function AdminTabla() {
           <table className="w-full text-sm text-left text-zinc-300">
             <thead className="text-xs text-zinc-500 uppercase bg-black">
               <tr>
+                {/* Agregué una columna chiquita para el logo en la tabla de admins */}
+                <th className="px-4 py-3 font-black w-10"></th> 
                 <th className="px-4 py-3 font-black">Equipo</th>
                 <th className="px-4 py-3 text-center font-black">Fechas Jugadas</th>
                 <th className="px-4 py-3 text-center font-black text-orange-500">Puntos (PTS)</th>
@@ -152,6 +202,13 @@ export default function AdminTabla() {
             <tbody className="divide-y divide-zinc-800">
               {equipos.map((equipo) => (
                 <tr key={equipo.id} className="hover:bg-zinc-800/50">
+                  <td className="px-4 py-3">
+                    {equipo.logo ? (
+                      <img src={equipo.logo} alt={equipo.nombre} className="w-8 h-8 rounded-full object-cover border border-zinc-700" />
+                    ) : (
+                      <div className="w-8 h-8 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-[10px] font-bold">--</div>
+                    )}
+                  </td>
                   <td className="px-4 py-3 font-bold text-white">{equipo.nombre}</td>
                   
                   <td className="px-4 py-3 text-center">
