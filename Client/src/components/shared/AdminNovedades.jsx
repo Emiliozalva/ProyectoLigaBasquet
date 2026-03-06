@@ -38,15 +38,15 @@ export default function AdminNovedades() {
     const file = e.target.files[0];
     if (!file) return;
 
-    setSubiendoImagen(true); // Mostramos "Subiendo..."
-    const url = await uploadImageToCloudinary(file); // Llamamos a Cloudinary
+    setSubiendoImagen(true); 
+    const url = await uploadImageToCloudinary(file); 
     
     if (url) {
-      setNuevaNovedad({ ...nuevaNovedad, imagen: url }); // Guardamos el link
+      setNuevaNovedad({ ...nuevaNovedad, imagen: url }); 
     } else {
       alert("Hubo un error al subir la imagen. Intenta de nuevo.");
     }
-    setSubiendoImagen(false); // Ocultamos "Subiendo..."
+    setSubiendoImagen(false); 
   };
 
   const handleCrearNovedad = async (e) => {
@@ -142,7 +142,7 @@ export default function AdminNovedades() {
 
           <button 
             type="submit" 
-            disabled={cargando || subiendoImagen} // Bloqueamos el botón si se está subiendo la foto
+            disabled={cargando || subiendoImagen} 
             className={`w-full font-bold py-3 rounded-lg uppercase tracking-widest transition-colors mt-2 ${
               cargando || subiendoImagen ? 'bg-zinc-800 text-zinc-500 cursor-not-allowed' : 'bg-orange-600 hover:bg-orange-500 text-white'
             }`}

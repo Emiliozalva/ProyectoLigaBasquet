@@ -191,7 +191,6 @@ export default function AdminTabla() {
           <table className="w-full text-sm text-left text-zinc-300">
             <thead className="text-xs text-zinc-500 uppercase bg-black">
               <tr>
-                {/* Agregué una columna chiquita para el logo en la tabla de admins */}
                 <th className="px-4 py-3 font-black w-10"></th> 
                 <th className="px-4 py-3 font-black">Equipo</th>
                 <th className="px-4 py-3 text-center font-black">Fechas Jugadas</th>

@@ -24,7 +24,6 @@ export function Navbar() {
             <li><Link to="/" className={linkStyle}>Inicio</Link></li>
             <li><Link to="/galeria" className={linkStyle}>Galeria</Link></li>
             <li><Link to="/torneo" className={linkStyle}>Torneo</Link></li>
-            {/* Aquí estaba el error. Cambiado a <Link> normal apuntando a la ruta */}
             <li>
               <Link to="/aboutUs" className={linkStyle}>
                 About us

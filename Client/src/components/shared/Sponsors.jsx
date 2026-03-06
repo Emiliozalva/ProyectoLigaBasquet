@@ -1,14 +1,11 @@
 import React from 'react';
-import logo1 from "../../assets/nike.png";
-import logo2 from "../../assets/ML.png";
-import logo3 from "../../assets/NB.png";
-import logo4 from "../../assets/adidas.png";
+import Logo from '../../assets/LogoCuartoCuartoWhite.png';
 
 const sponsors = [
-  { id: 1, name: "Sponsor A", logo: logo1 },
-  { id: 2, name: "Sponsor B", logo: logo2 },
-  { id: 3, name: "Sponsor C", logo: logo3 },
-  { id: 4, name: "Sponsor D", logo: logo4 },
+  { id: 1, name: "Sponsor A", logo: Logo },
+  { id: 2, name: "Sponsor B", logo: Logo},
+  { id: 3, name: "Sponsor C", logo: Logo },
+  { id: 4, name: "Sponsor D", logo: Logo },
 ];
 
 export default function Sponsors() {

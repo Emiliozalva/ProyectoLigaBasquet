@@ -1,7 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import foto1 from "../../assets/CC2.jpg";
-import foto2 from "../../assets/CC5.jpg";
-import foto3 from "../../assets/CC7.jpg";
+
 
 const AboutSection = ({ item }) => {
   const ref = useRef(null);
@@ -85,19 +83,19 @@ export default function AboutUs2() {
       id: 1,
       title: "LOREM IPSUM DOLOR",
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      image: foto1 
+      image: "https://res.cloudinary.com/doajyizjm/image/upload/q_auto,f_auto/v1772804615/galeria3-convertido-de-jpg_ve3fdi.webp" 
     },
     {
       id: 2,
       title: "CONSECTETUR ADIPISCING",
       text: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      image: foto2
+      image: "https://res.cloudinary.com/doajyizjm/image/upload/q_auto,f_auto/v1772804614/galeria9-convertido-de-jpg_gmet1o.webp"
     },
     {
       id: 3,
       title: "SED DO EIUSMOD",
       text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
-      image: foto3
+      image: "https://res.cloudinary.com/doajyizjm/image/upload/q_auto,f_auto/v1772804613/galeria11-convertido-de-jpg_njxtcm.webp"
     }
   ];
 

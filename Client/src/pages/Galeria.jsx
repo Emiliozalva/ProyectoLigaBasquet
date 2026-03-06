@@ -1,36 +1,29 @@
 import React, {useState} from 'react';
-import foto1 from "../assets/galeria/galeria1.jpg";
-import foto2 from "../assets/galeria/galeria2.jpg";
-import foto3 from "../assets/galeria/galeria3.jpg";
-import foto4 from "../assets/galeria/galeria4.jpg";
-import foto5 from "../assets/galeria/galeria5.jpg";
-import foto6 from "../assets/galeria/galeria6.jpg";
-import foto7 from "../assets/galeria/galeria7.jpg";
-import foto8 from "../assets/galeria/galeria8.jpg";
-import foto9 from "../assets/galeria/galeria9.jpg";
-import foto10 from "../assets//galeria/galeria10.jpg";
-import foto11 from "../assets/galeria/galeria11.jpg";
-import foto12 from "../assets/galeria/galeria12.jpg";
 import NextMatchCard from '../components/shared/NextMatchCard';
 import Novedades from '../components/shared/HeroNovedades';
-
-
-
 
 export default function Galeria() {
   
   const DRIVE_LINK = "https://drive.google.com/drive/folders/1HD4td-PVdT6O7pdLzBtwJpcQ_Hjp18bN";
 
   const [touchedIndex, setTouchedIndex] = useState(null);
-  const images = [
-    foto1,foto2,foto8,
-    foto4,foto5,foto6,
-    foto7,foto3,foto9,
-    foto10,foto11,foto12,
+  
+const images = [
+    "https://res.cloudinary.com/doajyizjm/image/upload/q_auto,f_auto/v1772804617/galeria1-convertido-de-jpg_ps7fzs.webp",
+    "https://res.cloudinary.com/doajyizjm/image/upload/q_auto,f_auto/v1772804617/galeria2-convertido-de-jpg_ofvtjm.webp",
+    "https://res.cloudinary.com/doajyizjm/image/upload/q_auto,f_auto/v1772804615/galeria3-convertido-de-jpg_ve3fdi.webp",
+    "https://res.cloudinary.com/doajyizjm/image/upload/q_auto,f_auto/v1772804614/galeria4-convertido-de-jpg_eiujo2.webp",
+    "https://res.cloudinary.com/doajyizjm/image/upload/q_auto,f_auto/v1772804620/galeria5-convertido-de-jpg_hrvoxj.webp",
+    "https://res.cloudinary.com/doajyizjm/image/upload/q_auto,f_auto/v1772804614/galeria9-convertido-de-jpg_gmet1o.webp",
+    "https://res.cloudinary.com/doajyizjm/image/upload/q_auto,f_auto/v1772804614/galeria6-convertido-de-jpg_b4enwx.webp",
+    "https://res.cloudinary.com/doajyizjm/image/upload/q_auto,f_auto/v1772804614/galeria8-convertido-de-jpg_l8muum.webp",
+    "https://res.cloudinary.com/doajyizjm/image/upload/q_auto,f_auto/v1772804613/galeria10-convertido-de-jpg_k0no9r.webp",
+    "https://res.cloudinary.com/doajyizjm/image/upload/q_auto,f_auto/v1772804614/galeria7-convertido-de-jpg_f2huc7.webp",
+    "https://res.cloudinary.com/doajyizjm/image/upload/q_auto,f_auto/v1772804613/galeria11-convertido-de-jpg_njxtcm.webp",
+    "https://res.cloudinary.com/doajyizjm/image/upload/q_auto,f_auto/v1772804613/galeria12-convertido-de-jpg_pyjs3v.webp",
   ];
   
   const handleInteraction = (e, index) => {
-    
     if (touchedIndex !== index) {
       e.preventDefault(); 
       setTouchedIndex(index); 
@@ -39,9 +32,10 @@ export default function Galeria() {
 
   return (
     <div className="bg-black min-h-screen pt-24">
-      <NextMatchCard/>
-      <div className="w-full"></div>
-      <div className="w-full"></div>
+      {/* Recuerda que NextMatchCard ahora vive en PublicLayout.jsx, 
+          así que puedes borrar esta línea de abajo si ya lo mudaste */}
+      <NextMatchCard/> 
+      
       <div className="py-12 px-6 text-center text-white">
         <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-4">
           Nuestra <span className="text-orange-600">Galería</span>

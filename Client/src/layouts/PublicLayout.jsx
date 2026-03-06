@@ -24,7 +24,7 @@ export default function PublicLayout() {
       <NextMatchCard/>
       {/* --- LOGO PARA MÓVIL --- */}
       <div className="fixed top-5 right-6 z-50 block md:hidden">
-         <Logo className="w-12 h-12 md:w-14 md:h-14 hover:scale-105 transition-transform duration-300" /> 
+         <Logo className="w-14 h-12 md:w-14 md:h-14 hover:scale-105 transition-transform duration-300" /> 
       </div>
 
       {/* CONTENIDO PRINCIPAL DE CADA PÁGINA */}
