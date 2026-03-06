@@ -32,9 +32,7 @@ const images = [
 
   return (
     <div className="bg-black min-h-screen pt-24">
-      {/* Recuerda que NextMatchCard ahora vive en PublicLayout.jsx, 
-          así que puedes borrar esta línea de abajo si ya lo mudaste */}
-      <NextMatchCard/> 
+      
       
       <div className="py-12 px-6 text-center text-white">
         <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-4">

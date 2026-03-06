@@ -29,7 +29,7 @@ export default function InstagramFeed() {
   }, []);
 
   return (
-    <div className="w-full py-12">
+    <div className="w-full py-12" loading="lazy">
       <div className="flex items-center justify-between mb-8 px-4 md:px-0">
         <div>
           <h2 className="text-3xl font-black uppercase tracking-tighter text-white flex items-center gap-2">
@@ -79,6 +79,7 @@ export default function InstagramFeed() {
                   <img 
                     src={logoPerfil} 
                     alt="Liga Cuarto Cuarto" 
+                    loading="lazy"
                     className="w-full h-full object-cover rounded-full border border-black bg-black"
                   />
                 </div>

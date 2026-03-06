@@ -6,7 +6,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-black text-zinc-400 py-10 border-t border-white/10 font-sans text-sm">
+    <footer className="bg-black text-zinc-400 py-10 border-t border-white/10 font-sans text-sm" loading="lazy">
       <div className="container mx-auto px-6 flex flex-col items-center justify-center gap-8 text-center">
         <div className="flex flex-col items-center gap-4">
           <div className="brightness-0 invert opacity-80 w-20"> 

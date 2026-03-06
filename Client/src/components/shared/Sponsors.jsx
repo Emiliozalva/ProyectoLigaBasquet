@@ -22,6 +22,7 @@ export default function Sponsors() {
               key={sponsor.id} 
               src={sponsor.logo} 
               alt={sponsor.name} 
+              loading="lazy"
               className="h-8 md:h-12 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
             />
           ))}

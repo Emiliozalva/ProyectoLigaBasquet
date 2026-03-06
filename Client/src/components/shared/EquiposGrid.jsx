@@ -57,7 +57,7 @@ export default function EquiposGrid() {
               
               <div className="w-20 h-20 md:w-24 md:h-24 bg-black rounded-full mb-4 flex items-center justify-center shadow-lg border border-zinc-700 group-hover:scale-110 group-hover:border-orange-500 transition-all duration-300 overflow-hidden">
                 {equipo.logo ? (
-                   <img src={equipo.logo} alt={equipo.nombre} className="w-full h-full object-cover" />
+                   <img src={equipo.logo} alt={equipo.nombre} loading="lazy" className="w-full h-full object-cover" />
                 ) : (
                    <span className="text-3xl font-black text-zinc-600 group-hover:text-orange-500 transition-colors uppercase">
                      {equipo.nombre ? equipo.nombre.charAt(0) : '?'}

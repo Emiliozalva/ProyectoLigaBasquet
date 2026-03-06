@@ -28,7 +28,7 @@ export default function TablaPosiciones() {
   }, []); 
 
   return (
-    <div className="w-full">
+    <div className="w-full" loading="lazy">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white flex items-center gap-3">
 
@@ -79,7 +79,7 @@ export default function TablaPosiciones() {
                       {/* --- AQUÍ RENDERIZAMOS EL LOGO REAL O LAS LETRAS --- */}
                       <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center text-[10px] uppercase border border-zinc-700 group-hover:border-orange-500 transition-colors overflow-hidden flex-shrink-0">
                         {fila.logo ? (
-                           <img src={fila.logo} alt={fila.nombre} className="w-full h-full object-cover" />
+                           <img src={fila.logo} alt={fila.nombre} loading="lazy" className="w-full h-full object-cover" />
                         ) : (
                            fila.nombre ? fila.nombre.substring(0, 2) : "??"
                         )}
