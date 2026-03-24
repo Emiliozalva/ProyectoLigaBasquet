@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { collection, addDoc, getDocs, deleteDoc, doc, orderBy, query } from 'firebase/firestore';
 import { db } from '../../firebase/config';
-import { uploadImageToCloudinary } from '../../utils/cloudinary'; // <-- IMPORTAMOS EL MOTOR DE SUBIDA
+import { uploadImageToCloudinary } from '../../utils/cloudinary'; 
 
 export default function AdminNovedades() {
   const [novedades, setNovedades] = useState([]);
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [cargando, setCargando] = useState(false);
-  const [subiendoImagen, setSubiendoImagen] = useState(false); // <-- ESTADO PARA LA BARRA DE CARGA
+  const [subiendoImagen, setSubiendoImagen] = useState(false); 
   
   const [nuevaNovedad, setNuevaNovedad] = useState({
     titulo: '',
@@ -119,7 +119,6 @@ export default function AdminNovedades() {
             />
           </div>
           
-          {/* --- CAMBIO: INPUT DE TIPO ARCHIVO PARA LA IMAGEN --- */}
           <div>
             <label className="block text-xs font-bold text-zinc-500 uppercase mb-2">Imagen de la Novedad</label>
             <input 
@@ -129,10 +128,10 @@ export default function AdminNovedades() {
               className="w-full bg-zinc-900 border border-zinc-700 text-zinc-400 rounded p-2 focus:border-orange-600 outline-none
                 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-zinc-800 file:text-white hover:file:bg-zinc-700 transition-all cursor-pointer"
             />
-            {/* Mensaje de carga */}
+            
             {subiendoImagen && <p className="text-orange-500 text-xs font-bold mt-2 animate-pulse">Subiendo imagen a la nube...</p>}
             
-            {/* Vista previa de la foto */}
+          
             {nuevaNovedad.imagen && !subiendoImagen && (
               <div className="mt-4 relative w-32 h-20 rounded-lg overflow-hidden border border-zinc-700">
                 <img src={nuevaNovedad.imagen} alt="Vista previa" className="w-full h-full object-cover" />

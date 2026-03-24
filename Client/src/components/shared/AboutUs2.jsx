@@ -81,21 +81,45 @@ export default function AboutUs2() {
   const sections = [
     {
       id: 1,
-      title: "LOREM IPSUM DOLOR",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      image: "https://res.cloudinary.com/doajyizjm/image/upload/q_auto,f_auto/v1772804615/galeria3-convertido-de-jpg_ve3fdi.webp" 
+      title: "¿QUIÉNES SOMOS?",
+      text: (
+        <>
+          CuartoCuarto es la única liga libre de básquet 3x3 de Santa Fe.
+          <br />
+          Nació de una idea simple: agarrar la pelota y jugar, sin necesidad de estar federado ni pertenecer a un club.
+          <br />
+          Hoy somos un movimiento que reúne a más de 70 jugadores por fin de semana, de todos los barrios de la ciudad, con un solo propósito en común: jugar.
+        </>
+      ),
+      image: "https://res.cloudinary.com/doajyizjm/image/upload/v1774393864/DSC04921-convertido-de-jpg_irooqc.webp" 
     },
     {
       id: 2,
-      title: "CONSECTETUR ADIPISCING",
-      text: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      image: "https://res.cloudinary.com/doajyizjm/image/upload/q_auto,f_auto/v1772804614/galeria9-convertido-de-jpg_gmet1o.webp"
+      title: "IMPACTO",
+      text: (
+        <>
+          Creemos que el deporte es mejor cuando se disfruta en comunidad.
+          <br />
+          CuartoCuarto nació para generar un espacio donde el juego y el encuentro van de la mano. No es solo un torneo, es un punto de encuentro real, con estructura y organización que fomenta la competencia, pero sin perder lo más importante: que la gente la pase bien, se conozca, y vuelva cada fin de semana con más ganas.
+        </>
+      ),
+      image: "https://res.cloudinary.com/doajyizjm/image/upload/v1774393864/DSC04934-convertido-de-jpg_uznljc.webp"
     },
     {
       id: 3,
-      title: "SED DO EIUSMOD",
-      text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
-      image: "https://res.cloudinary.com/doajyizjm/image/upload/q_auto,f_auto/v1772804613/galeria11-convertido-de-jpg_njxtcm.webp"
+      title: "VALORES",
+      text: (
+        <>
+          <strong>Unión.</strong> Porque los mejores equipos se arman entre amigos, vecinos y desconocidos que comparten una cancha.
+          <br />
+          <strong>Buen juego.</strong> Porque la forma en que se juega importa tanto como el resultado.
+          <br />
+          <strong>Integridad.</strong> Porque el respeto entre rivales es lo que hace que este espacio funcione y crezca.
+          <br />
+          <strong>Profesionalismo.</strong> Porque cada detalle importa, desde la organización del evento hasta la producción del contenido. Hacemos las cosas bien.
+        </>
+      ),
+      image: "https://res.cloudinary.com/doajyizjm/image/upload/v1774393864/DSC05147-convertido-de-jpg_dlslba.webp"
     }
   ];
 

@@ -34,7 +34,7 @@ export default function Inscripciones() {
       
       <div className="text-center mb-12">
         <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white">
-          Inscripción a la <span className="text-orange-600">Proxima Fecha</span>
+          Inscripción a la <span className="text-orange-600">Próxima Fecha</span>
         </h1>
       </div>
 
@@ -55,17 +55,21 @@ export default function Inscripciones() {
           
           <div className="space-y-8 text-zinc-300">
             <p className="text-center text-sm md:text-base max-w-2xl mx-auto">
-              Para inscribir a tu equipo en la próxima temporada, el proceso se realiza directamente con la administración de la liga.
+              Para inscribir a tu equipo en la próxima temporada, el proceso se realiza a través de nuestro formulario de inscripción.
             </p>
             
             <div className="bg-black border border-zinc-800 rounded-sm p-6 md:p-8 max-w-2xl mx-auto">
               <h3 className="text-orange-500 font-bold uppercase tracking-widest mb-4 text-xs text-center">Pasos a seguir</h3>
+
               <ol className="list-decimal list-inside space-y-4 font-medium text-white text-sm md:text-base">
-                <li className="pl-2">Haz clic en el botón de abajo para acceder al formulario o iniciar la conversación.</li>
-                <li className="pl-2">Envíanos el nombre de tu equipo y del delegado responsable.</li>
-                <li className="pl-2">Te enviaremos los métodos de pago disponibles y el reglamento.</li>
-                <li className="pl-2">Una vez confirmado el pago, se les asignará el cupo oficial.</li>
+                <li className="pl-2">Clickear en el botón de inscripción para acceder al formulario.</li>
+                <li className="pl-2">Seguir las instrucciones dentro del formulario.</li>
+                <li className="pl-2">Enviar y adjuntar comprobante de pago.</li>
+                <li className="pl-2">Una vez confirmada la inscripción se le asignará a tu equipo un cupo en la próxima fecha.</li>
               </ol>
+              <p className="mt-8 text-sm text-zinc-400 text-center italic border-t border-zinc-800 pt-4">
+                * Si es la primera vez que tu equipo participa, una vez confirmada la inscripción aparecerá tu equipo en la sección de torneo.
+              </p>
             </div>
 
             <div className="pt-4 flex justify-center">
@@ -94,7 +98,7 @@ export default function Inscripciones() {
             Cupos Completos
           </h2>
           <p className="text-zinc-400 text-sm md:text-base">
-            Las inscripciones no están abiertas en este momento. Los cupos para el torneo actual ya se encuentran cubiertos. Mantente atento a nuestras novedades para la próxima temporada.
+            Las inscripciones no están abiertas en este momento. Los cupos para el torneo actual ya se encuentran cubiertos. Mantente atento a nuestras novedades para la próxima fecha.
           </p>
         </div>
       )}
